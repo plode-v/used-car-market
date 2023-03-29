@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
 const SignUp = () => {
@@ -49,14 +49,14 @@ const SignUp = () => {
                             value={username}
                         /><br />
                         <input 
-                            type="text" 
+                            type="email" 
                             className='form-control form-group' 
                             placeholder='Email' 
                             onChange={e => setEmail(e.target.value)} 
                             value={email}
                         /><br />
                         <input 
-                            type="text" 
+                            type="password" 
                             className='form-control form-group' 
                             placeholder='Password' 
                             onChange={e => setPassword(e.target.value)}
