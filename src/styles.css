@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+    --background: #F6F1F1;
+    --light-blue: #19A7CE;
+    --dark-blue: #146C94;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Open Sans";
+    background-color: var(--background);
+}
+
+/* Navbar */
+
+.nav {
+    background-color: var(--dark-blue);
+    color: var(--background);
+    display: flex;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.site-title {
+    font-size: 2rem;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+.nav a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    transition: 200ms;
+}
+
+.nav a:hover {
+    transition: 200ms;
+    opacity: 40%;
+}
+
+/* Login & SignUp Form */
+
+.form {
+    margin-top: 100px;
+    border: solid;
+    padding: 50px;
+    height: 500px;
+    border-radius: 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container input {
+    width: 500px;
+    height: 30px;
+    font-size: 1rem;
+    margin: 5px 0;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.container button {
+    width: 500px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: 800;
+    background-color: #333;
+    color: whitesmoke;
+    border-style: none;
+}
+
+.signup-link {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    width: max-content;
+    margin-top: 20px;
+    align-self: center;
+
+}
+
+.signup-link:hover {
+    opacity: 50%;
+    transition: 150ms;
+}

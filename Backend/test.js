@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const express = require("express")
 const app = express();
 
-mongoose.connect("mongodb+srv://admin:cshOfW8aOs1y0lMl@used-car-app.katatnr.mongodb.net/test?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://admin:cshOfW8aOs1y0lMl@used-car-app.katatnr.mongodb.net/user?retryWrites=true&w=majority")
 
 const schema = new mongoose.Schema({
     fullName: String,

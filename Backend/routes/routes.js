@@ -2,10 +2,11 @@ const express = require("express");
 const User = require("../models/signUpModels");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 
 router.post("/signup", async (req, res) => {
-
+    
     const securePassword = await bcrypt.hash(req.body.password, 10)
 
     const signedUpUser = new User({
@@ -31,13 +32,36 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    const email = req.body.email
-    const password = bcrypt.hashSync(req.body.password, 10)
-
-    const user = User.find({ email: email, password: password });
-    if (!user) {
-        return res.status(401).json({message: "Invalid email or password"});
-    }
+    User.findOne({ username: req.body.username })
+    .then(user => {
+        bcrypt.compare(req.body.password, user.password)
+        .then((checkPassword) => {
+            if (!checkPassword) {
+                return res.status(400).send({message: "Password does not match"})
+            }
+            const token = jwt.sign(
+                {
+                    userId: user._id,
+                    userUsername: user.username
+                },
+                    "RANDOM-TOKEN",
+                    { expiresIn: "24h" }
+            );
+            res.status(200).send({
+                message: "Login successful",
+                username: user.username,
+                token
+            })
+        })
+        .catch(err => {
+            res.status(400).send({
+                message: "Passwords does not match", err
+            })
+        })
+    })
+    .catch( err => {
+        res.status(404).send({message: "Username not found", err})
+    })
 })
 
 module.exports = router;

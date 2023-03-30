@@ -1,44 +1,52 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-
-    const handleSubmit = async (event) => {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        const login = {
-            email: email,
+        const loggedIn = {
+            username: username,
             password: password
         }
-        
-        try {
-            axios.post("http://localhost:4000/api/login", login)
-                .then(response => console.log(response.data));
-        } catch (err) {
-            console.error(err)
-        }
 
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <button type="submit">Login</button>
-        </form>
-    )
-
-
-
+        axios.post("http://localhost:4000/api/login", loggedIn)
+            .then(response => console.log(response.data))
+            .then(() => {
+                setIsLoggedIn(true)
+            })
+    }
+  return (
+    <div className='container'>
+        <div className="form">
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="username" 
+                    className='form-control form-group' 
+                    placeholder='Username' 
+                    onChange={e => setUsername(e.target.value)} 
+                    value={username}
+                /><br />
+                <input 
+                    type="password" 
+                    className='form-control form-group' 
+                    placeholder='Password' 
+                    onChange={e => setPassword(e.target.value)}
+                    value={password}
+                /> <br />
+                <button type="submit">Login</button>
+                <br />
+                <Link className='signup-link' to="/signup">Don't have account yet?</Link>
+            </form>
+        </div>
+    </div>
+  )
 }
 
-export default Login;
+export default Login
